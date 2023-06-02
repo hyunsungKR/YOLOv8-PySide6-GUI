@@ -23,6 +23,7 @@ import torch
 import sys
 import cv2
 import os
+import traceback
 
 
 class YoloPredictor(BasePredictor, QObject):
@@ -693,7 +694,12 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
 
 if __name__ == "__main__":
-    app = QApplication(sys.argv)
-    Home = MainWindow()
-    Home.show()
-    sys.exit(app.exec())  
+    try:
+           
+        app = QApplication(sys.argv)
+        Home = MainWindow()
+        Home.show()
+        sys.exit(app.exec())
+    except Exception as e:
+        print("Exception occurred: ", e)
+        traceback.print_exc()
